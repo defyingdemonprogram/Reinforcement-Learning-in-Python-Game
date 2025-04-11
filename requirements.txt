@@ -3,3 +3,7 @@ torch
 numpy
 matplotlib
 ipython
+
+
+## Easy solution
+pyQt6

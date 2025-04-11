@@ -2,6 +2,8 @@ import torch
 import random
 import numpy as np
 from collections import deque
+from pathlib import Path
+
 from env import SnakeGameAI, Direction, Point
 from model import LinearQNet, QTrainer
 from helper import plot
@@ -13,13 +15,13 @@ LEARNING_RATE = 0.001
 class Agent:
     def __init__(self, model_path: str = None):
         self.n_games = 0
-        # Do exploration in first 100 game if model start from scratch
+        # NOTE(dev): Do exploration in first 100 game if model start from scratch
         self.exploration = 5
         self.epsilon = 0  # Randomness factor
         self.gamma = 0.9  # Discount factor for future rewards
         self.memory = deque(maxlen=MAX_MEMORY)  # Stores experiences
         self.model = LinearQNet(11, 256, 3)
-        if model_path:
+        if model_path.exists():
             self.model.load_state_dict(torch.load(model_path, map_location="cpu"))
         self.trainer = QTrainer(self.model, lr=LEARNING_RATE, gamma=self.gamma)
 
@@ -113,7 +115,7 @@ def train(model_path: str = None):
     plot_scores = []
     plot_mean_scores = []
     total_score = 0
-    # Make record 0 if training from scratch
+    # NOTE(dev): Make record 0 if training from scratch
     record = 30
 
     agent = Agent(model_path)
@@ -147,5 +149,5 @@ def train(model_path: str = None):
 
 
 if __name__ == '__main__':
-    model_path = "./model/model.pth"
+    model_path = Path("./model/model.pth")
     train(model_path=model_path)

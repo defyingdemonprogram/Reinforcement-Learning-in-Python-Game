@@ -5,6 +5,8 @@ from IPython.display import clear_output, display
 plt.ion()
 
 def plot(scores, mean_scores):
+    if not scores or not mean_scores:
+        return
     # Clear previous output and display the updated plot
     clear_output(wait=True)
     display(plt.gcf())
