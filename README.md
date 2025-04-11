@@ -18,6 +18,9 @@
     python src/agent.py
     ```
 
+### Demo
+![image](https://github.com/user-attachments/assets/fffda58c-d777-45aa-9dca-858ffb2364bd)
+
 #### Resources
 * [Pygame Documentation](https://www.pygame.org/docs/)
 * [Intro to Pygame - Pygame Docs](https://pygame.readthedocs.io/en/latest/1_intro/intro.html#explore-a-simple-ball-game)
